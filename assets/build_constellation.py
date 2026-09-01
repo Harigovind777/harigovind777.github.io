@@ -39,6 +39,7 @@ PROJECTS = [
     ("portfolio", "This Site",       "project"),
     ("voter",     "Voter Lookup",    "project"),
     ("zsi",       "ZSI Field App",   "project"),
+    ("resume",    "Resume Analyzer", "project"),
 ]
 
 SKILLS = {
@@ -65,6 +66,8 @@ EDGES = [
     ("voter", s) for s in ("typescript", "htmlcss")
 ] + [
     ("zsi", s) for s in ("flutter", "dart")
+] + [
+    ("resume", s) for s in ("htmlcss", "javascript")
 ]
 
 # ── layout ───────────────────────────────────────────────────────────────────
