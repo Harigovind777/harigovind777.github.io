@@ -370,6 +370,84 @@ img{ max-width:100%; display:block }
 .foot__kanji{ font-family:var(--jp); color:var(--vermil) }
 .foot__sub{ font-size:.75rem; opacity:.75; max-width:46ch; margin:0 auto }
 
+/* ───────────────────────────────────────────────── toolbelt */
+.toolbelt{ margin-top:2.2rem; border-top:1px solid var(--rule); padding-top:1.6rem }
+.toolbelt__title{
+  font-family:var(--mono); font-size:.74rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--amber); font-weight:400; margin-bottom:1.1rem;
+}
+.toolbelt__list{ margin:0; display:grid; gap:.9rem 1.6rem;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr)) }
+.toolbelt__list > div{ display:grid; grid-template-columns:92px 1fr; gap:.6rem; align-items:start }
+.toolbelt__list dt{
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.06em; color:var(--muted);
+  text-transform:uppercase; padding-top:.3rem;
+}
+.toolbelt__list dd{ margin:0; display:flex; flex-wrap:wrap; gap:.35rem }
+.toolbelt__list dd span{
+  font-size:.78rem; padding:.24rem .58rem; border-radius:5px;
+  background:rgba(246,241,232,.06); border:1px solid var(--rule); color:#e2d6e2;
+}
+
+/* ──────────────────────────────────────────────── education */
+.edu{ display:grid; gap:clamp(1.6rem,4vw,3rem); grid-template-columns:1fr }
+@media (min-width:860px){ .edu{ grid-template-columns:1.35fr 1fr } }
+
+.edu__list{ list-style:none; margin:0; padding:0 }
+.edu__list li{
+  border-left:2px solid var(--vermil); padding:0 0 0 1.3rem; margin-bottom:1.9rem;
+}
+.edu__list li:last-child{ margin-bottom:0 }
+.edu__when{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--amber); margin-bottom:.3rem;
+}
+.edu__list h3{ font-size:1.12rem; margin-bottom:.3rem }
+.edu__where{ color:var(--muted); font-size:.9rem; margin-bottom:.35rem }
+.edu__score{ font-family:var(--mono); font-size:.85rem; color:#ddd0dd; margin:0 }
+.edu__score b{ color:var(--amber); font-size:1.05rem }
+
+.langs{
+  border:1px solid var(--rule); border-radius:14px; background:var(--card);
+  padding:1.4rem 1.3rem; align-self:start;
+}
+.langs__title{
+  font-family:var(--mono); font-size:.74rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--amber); font-weight:400; margin-bottom:1rem;
+}
+.langs__table{ width:100%; border-collapse:collapse; font-size:.86rem }
+.langs__table th, .langs__table td{
+  padding:.44rem .3rem; border-bottom:1px solid var(--rule); text-align:center;
+}
+.langs__table thead th{
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--muted); font-weight:400;
+}
+.langs__table tbody th{ text-align:left; font-weight:500; color:var(--paper) }
+.langs__table td{ color:#7fe3a6 }
+.langs__table td.no{ color:var(--muted); opacity:.5 }
+.langs__table tbody tr:last-child th,
+.langs__table tbody tr:last-child td{ border-bottom:0 }
+.langs__note{
+  margin:1rem 0 0; font-size:.82rem; color:var(--muted);
+  border-top:1px solid var(--rule); padding-top:.9rem;
+}
+
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* ─────────────────────────────────────────── timeline extras */
+.tl__when{
+  font-family:var(--mono); font-size:.68rem; letter-spacing:.08em;
+  color:var(--muted); text-transform:none; margin-left:.6rem;
+}
+.tl__points{ margin:.9rem 0 0; padding-left:1.1rem; color:#ddd0dd; max-width:62ch }
+.tl__points li{ margin-bottom:.45rem; font-size:.94rem }
+.tl__points li::marker{ color:var(--vermil) }
+.tl__points b{ color:var(--amber); font-weight:600 }
+
 /* ───────────────────────────────────────────────────── reveal */
 .reveal{ opacity:0; transform:translateY(20px); transition:opacity .7s var(--ease), transform .7s var(--ease) }
 .reveal.is-in{ opacity:1; transform:none }
@@ -379,6 +457,9 @@ img{ max-width:100%; display:block }
   .hero__gyroid{ left:74%; top:26%; width:62vw; height:62vw; opacity:.85 }
   .hero__sun{ left:74%; top:26%; width:52vw }
   .nav__brand span:not(.nav__kanji){ display:none }
+  .nav__list{ overflow-x:auto; scrollbar-width:none; max-width:64vw }
+  .nav__list::-webkit-scrollbar{ display:none }
+  .toolbelt__list > div{ grid-template-columns:1fr; gap:.35rem }
 }
 
 @media (prefers-reduced-motion:reduce){
