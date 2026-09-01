@@ -132,6 +132,143 @@
     revealables.forEach((el) => io.observe(el));
   }
 
+
+  /* ──────────────────────────────────────── skill constellation
+     Layout is precomputed by assets/build_constellation.py and inlined as JSON,
+     so the live graph and the animated SVG in the GitHub README are guaranteed
+     to be the same picture. Here we only draw it and wire up the highlighting. */
+  const host = document.getElementById("constel-svg");
+  const dataEl = document.getElementById("graph-data");
+  if (host && dataEl) {
+    const NS = "http://www.w3.org/2000/svg";
+    const g = JSON.parse(dataEl.textContent);
+    const byId = new Map(g.nodes.map((n) => [n.id, n]));
+    const el = (t, a) => {
+      const e = document.createElementNS(NS, t);
+      for (const k in a) e.setAttribute(k, a[k]);
+      return e;
+    };
+
+    // adjacency, used for both the highlight and the text fallback
+    const near = new Map(g.nodes.map((n) => [n.id, []]));
+    g.edges.forEach((e) => { near.get(e.p).push(e.s); near.get(e.s).push(e.p); });
+
+    const defs = el("defs");
+    defs.innerHTML =
+      '<filter id="cglow" x="-70%" y="-70%" width="240%" height="240%">' +
+      '<feGaussianBlur stdDeviation="4" result="b"/><feMerge>' +
+      '<feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
+    host.appendChild(defs);
+
+    const gEdges = el("g", { class: "constel__edges" });
+    const gNodes = el("g", { class: "constel__nodes" });
+    host.append(gEdges, gNodes);
+
+    const edgeEls = g.edges.map((e) => {
+      const path = el("path", { d: e.d, class: "edge", "data-p": e.p, "data-s": e.s });
+      gEdges.appendChild(path);
+      return path;
+    });
+
+    const nodeEls = new Map();
+    g.nodes.forEach((n) => {
+      const isP = n.type === "project";
+      const grp = el("g", {
+        class: "node node--" + n.type,
+        "data-id": n.id,
+        tabindex: "0",
+        role: "button",
+        "aria-label": `${n.label}: ${near.get(n.id).length} connection${
+          near.get(n.id).length === 1 ? "" : "s"}`,
+      });
+      if (isP) {
+        const r = 11;
+        grp.appendChild(el("path", {
+          class: "mark",
+          d: `M${n.x},${n.y - r} L${n.x + r},${n.y} L${n.x},${n.y + r} L${n.x - r},${n.y} Z`,
+        }));
+      } else {
+        grp.appendChild(el("circle", { class: "mark", cx: n.x, cy: n.y, r: n.r }));
+      }
+
+      // label placement mirrors the generator: outward, or clear of the node
+      const ang = Math.atan2(n.y - g.h / 2 - 6, n.x - g.w / 2);
+      const ca = Math.cos(ang);
+      let anchor = "middle", dx = 0, dy = Math.sin(ang) < 0 ? -(n.r + 10) : n.r + 19;
+      if (Math.abs(ca) >= 0.3) {
+        anchor = ca > 0 ? "start" : "end";
+        dx = ca > 0 ? n.r + 9 : -(n.r + 9);
+        dy = 4;
+      }
+      const t = el("text", {
+        class: "label", x: n.x + dx, y: n.y + dy, "text-anchor": anchor,
+      });
+      t.textContent = n.label;
+      grp.appendChild(t);
+      gNodes.appendChild(grp);
+      nodeEls.set(n.id, grp);
+    });
+
+    const hint = document.getElementById("constel-hint");
+    const hintHTML = hint ? hint.innerHTML : "";
+    let active = null;
+
+    function show(id) {
+      active = id;
+      host.classList.add("is-focus");
+      const lit = new Set([id, ...near.get(id)]);
+      nodeEls.forEach((n, k) => n.classList.toggle("is-lit", lit.has(k)));
+      edgeEls.forEach((e, i) => {
+        const ed = g.edges[i];
+        e.classList.toggle("is-lit", ed.p === id || ed.s === id);
+      });
+      if (hint) {
+        const n = byId.get(id);
+        const others = near.get(id).map((k) => byId.get(k).label);
+        hint.innerHTML =
+          `<b>${n.label}</b> — ${n.type === "skill" ? "used in" : "built with"} ` +
+          others.map((o) => `<i>${o}</i>`).join(", ");
+      }
+    }
+
+    function clear() {
+      active = null;
+      host.classList.remove("is-focus");
+      nodeEls.forEach((n) => n.classList.remove("is-lit"));
+      edgeEls.forEach((e) => e.classList.remove("is-lit"));
+      if (hint) hint.innerHTML = hintHTML;
+    }
+
+    nodeEls.forEach((grp, id) => {
+      grp.addEventListener("mouseenter", () => show(id));
+      grp.addEventListener("focus", () => show(id));
+      grp.addEventListener("blur", clear);
+      grp.addEventListener("keydown", (ev) => {
+        if (ev.key === "Escape") { clear(); grp.blur(); }
+      });
+      // touch: tap to pin, tap again to release
+      grp.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        active === id ? clear() : show(id);
+      });
+    });
+    host.addEventListener("mouseleave", () => { if (!active) clear(); });
+    document.addEventListener("click", (ev) => {
+      if (active && !host.contains(ev.target)) clear();
+    });
+
+    // text fallback, for narrow screens and screen readers
+    const list = document.getElementById("constel-list");
+    if (list) {
+      g.nodes.filter((n) => n.type === "skill").forEach((n) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<b>${n.label}</b> — ` +
+          near.get(n.id).map((k) => byId.get(k).label).join(", ");
+        list.appendChild(li);
+      });
+    }
+  }
+
   /* ────────────────────────────────────────────────── petals */
   const petals = document.getElementById("petals");
   if (petals && !reduced) {
