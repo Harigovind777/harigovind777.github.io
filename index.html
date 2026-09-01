@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harigovind R — Web Developer &amp; ML</title>
+<meta name="description" content="Harigovind R — web developer and final-year B.Tech AI &amp; ML student. Express and TypeScript on the web, PyTorch and scikit-learn on the model side.">
+<meta name="author" content="Harigovind R">
+<link rel="canonical" href="https://harigovind777.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Harigovind R — Web Developer &amp; ML">
+<meta property="og:description" content="Web developer and final-year B.Tech AI &amp; ML student. I build web systems, and models I try hard to break before anyone else does.">
+<meta property="og:url" content="https://harigovind777.github.io/">
+<meta property="og:image" content="https://harigovind777.github.io/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top"><span class="nav__kanji">骨</span> Harigovind R</a>
+  <nav aria-label="Sections">
+    <ul class="nav__list">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ───────────────────────────────────────────── hero -->
+<section class="hero" id="top">
+  <div class="hero__sky" aria-hidden="true">
+    <div class="hero__halftone"></div>
+    <div class="hero__sun"></div>
+    <canvas class="hero__gyroid" id="gyroid" width="300" height="300"></canvas>
+    <div class="hero__ridge hero__ridge--far"></div>
+    <div class="hero__ridge hero__ridge--near"></div>
+    <div class="petals" id="petals"></div>
+  </div>
+
+  <div class="hero__inner">
+    <p class="eyebrow">Final-year B.Tech · AI &amp; ML · Chinmaya Vishwa Vidyapeeth</p>
+    <h1 class="hero__name">Harigovind&nbsp;R</h1>
+    <p class="hero__role">Web Developer <span class="slash">/</span> Machine Learning</p>
+    <p class="hero__tagline">
+      I build web systems — and models I try hard to break<br>
+      before anyone else gets the chance.
+    </p>
+    <p class="status"><span class="status__dot"></span> Open to internships &amp; junior roles</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#projects">See the work</a>
+      <a class="btn" href="https://github.com/Harigovind777" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/hari-govind-436230294/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true"><span></span></div>
+</section>
+
+<!-- ───────────────────────────────────────────── experience -->
+<section class="section" id="work">
+  <header class="section__head">
+    <span class="section__kanji">経歴</span>
+    <h2>Where I've worked</h2>
+  </header>
+
+  <ol class="timeline">
+    <li class="tl reveal">
+      <div class="tl__marker" aria-hidden="true"></div>
+      <div class="tl__body">
+        <p class="tl__org">Medlab Enterprises</p>
+        <h3 class="tl__role">Web Developer — Intern</h3>
+        <p class="tl__text">
+          Built and shipped the distributor website for their AOSYS product line — a
+          real business site with real users, not a course exercise. Hand-written
+          HTML, CSS and JavaScript, built to load fast on the phones their customers
+          actually use.
+        </p>
+        <p class="tl__tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive</span></p>
+        <a class="tl__link" href="https://github.com/Harigovind777/medlab-site" target="_blank" rel="noopener">View the code →</a>
+      </div>
+    </li>
+
+    <li class="tl reveal">
+      <div class="tl__marker" aria-hidden="true"></div>
+      <div class="tl__body">
+        <p class="tl__org">NIELIT Kozhikode</p>
+        <h3 class="tl__role">Machine Learning — Intern</h3>
+        <p class="tl__text">
+          Trained on the practical ML stack and on Django for the web side —
+          data handling, model building and evaluation, then wiring models behind
+          a Python web backend so they can actually be served rather than sit in
+          a notebook.
+        </p>
+        <p class="tl__tags"><span>Python</span><span>Django</span><span>scikit-learn</span><span>pandas</span></p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ───────────────────────────────────────────── projects -->
+<section class="section" id="projects">
+  <header class="section__head">
+    <span class="section__kanji">作品</span>
+    <h2>Selected projects</h2>
+    <p class="section__sub">Numbers below are measured, not estimated.</p>
+  </header>
+
+  <!-- featured -->
+  <article class="feat reveal">
+    <div class="feat__tag">Team project · Public</div>
+    <h3 class="feat__title">WildID — endangered species identification</h3>
+    <p class="feat__lede">
+      A Flutter app that identifies CITES-protected marine species from a photo,
+      backed by an ensemble of three PyTorch classifiers. Built for field use, so
+      it degrades gracefully: when the network drops it falls back to a bundled
+      on-device model instead of failing.
+    </p>
+    <ul class="metrics">
+      <li><b>66</b><span>CITES-protected species</span></li>
+      <li><b>98.47%</b><span>reported top-1 accuracy</span></li>
+      <li><b>50–400ms</b><span>inference per prediction</span></li>
+      <li><b>3</b><span>models in the ensemble</span></li>
+    </ul>
+    <p class="feat__note">
+      EfficientNet-B0 as the primary classifier, with ResNet-50 and MobileNet-V3
+      combined by weighted voting for robustness. Flask serves the models; the app
+      caches for offline use.
+    </p>
+    <p class="tl__tags"><span>Flutter</span><span>Dart</span><span>PyTorch</span><span>Flask</span><span>Python</span></p>
+    <a class="btn btn--primary" href="https://github.com/Sym-jay/WildID" target="_blank" rel="noopener">View the code →</a>
+  </article>
+
+  <article class="feat feat--alt reveal">
+    <div class="feat__tag">Thesis · Private repository</div>
+    <h3 class="feat__title">Bone scaffold property prediction &amp; inverse design</h3>
+    <p class="feat__lede">
+      Predicting how biopolymer bone scaffolds behave mechanically, then running the
+      model backwards to propose a scaffold worth printing. A voxel FEM sweep fused
+      with scarce real data by multi-fidelity co-kriging.
+    </p>
+    <ul class="metrics">
+      <li><b>747</b><span>geometries simulated</span></li>
+      <li><b>+0.242</b><span>accuracy inflation I found</span></li>
+      <li><b>266/725</b><span>designs survive constraints</span></li>
+      <li><b>10</b><span>scaffold architectures</span></li>
+    </ul>
+    <p class="feat__note">
+      The finding I'm proudest of is a negative one: random 5-fold validation claimed
+      0.826 accuracy, but grouping the splits by publication dropped it to 0.584 —
+      barely past the 0.555 majority-class baseline. Under a fair
+      leave-one-architecture-out test the classical Gibson–Ashby law (R² = 0.733)
+      beat my own learned surrogate (0.555). So the physics shipped and the surrogate
+      didn't.
+    </p>
+    <p class="tl__tags"><span>Python</span><span>NumPy</span><span>SciPy</span><span>scikit-learn</span><span>Voxel FEM</span><span>Co-kriging</span></p>
+    <p class="locked">Private — it's my thesis. Happy to walk through the code or results on request.</p>
+  </article>
+
+  <!-- grid -->
+  <div class="grid">
+    <article class="card reveal">
+      <h3>Agent-Ready Task API</h3>
+      <p>
+        An Express task API built to be driven by AI agents as well as humans — it
+        exposes a manifest endpoint for tool discovery and an instruction endpoint
+        that can plan or execute a task, alongside normal REST CRUD, filtering,
+        comments and stats.
+      </p>
+      <p class="tl__tags"><span>Node.js</span><span>Express</span><span>JavaScript</span></p>
+      <a href="https://github.com/Harigovind777/Agent-Api-Task" target="_blank" rel="noopener">View the code →</a>
+    </article>
+
+    <article class="card reveal">
+      <h3>Medlab Enterprises <span class="chip">shipped</span></h3>
+      <p>
+        The distributor site I built during my internship — product pages for the
+        AOSYS line, built without a framework so it stays fast and easy for the
+        business to keep running.
+      </p>
+      <p class="tl__tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></p>
+      <a href="https://github.com/Harigovind777/medlab-site" target="_blank" rel="noopener">View the code →</a>
+    </article>
+
+    <article class="card reveal">
+      <h3>Panchayath Voter Lookup <span class="chip chip--lock">private</span></h3>
+      <p>
+        A TypeScript web app for looking up residents and booth-level voter counts
+        for a panchayath — built around search over real administrative data.
+      </p>
+      <p class="tl__tags"><span>TypeScript</span><span>CSS</span></p>
+    </article>
+
+    <article class="card reveal">
+      <h3>ZSI Field App <span class="chip chip--lock">private</span></h3>
+      <p>
+        A Flutter application for the Zoological Survey of India's zoology
+        department — structured field data collection and management on mobile.
+      </p>
+      <p class="tl__tags"><span>Flutter</span><span>Dart</span></p>
+    </article>
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────────── skills -->
+<section class="section" id="skills">
+  <header class="section__head">
+    <span class="section__kanji">技</span>
+    <h2>The stack</h2>
+    <p class="section__sub">Pressed, not printed. Hover one.</p>
+  </header>
+
+  <div class="stamps" id="stamps">
+    <figure><img src="assets/stamps/javascript.png" alt="JavaScript" width="150" height="150" loading="lazy"><figcaption>JavaScript</figcaption></figure>
+    <figure><img src="assets/stamps/typescript.png" alt="TypeScript" width="150" height="150" loading="lazy"><figcaption>TypeScript</figcaption></figure>
+    <figure><img src="assets/stamps/nodejs.png" alt="Node.js" width="150" height="150" loading="lazy"><figcaption>Node.js</figcaption></figure>
+    <figure><img src="assets/stamps/express.png" alt="Express" width="150" height="150" loading="lazy"><figcaption>Express</figcaption></figure>
+    <figure><img src="assets/stamps/htmlcss.png" alt="HTML and CSS" width="150" height="150" loading="lazy"><figcaption>HTML / CSS</figcaption></figure>
+    <figure><img src="assets/stamps/python.png" alt="Python" width="150" height="150" loading="lazy"><figcaption>Python</figcaption></figure>
+    <figure><img src="assets/stamps/django.png" alt="Django" width="150" height="150" loading="lazy"><figcaption>Django</figcaption></figure>
+    <figure><img src="assets/stamps/flask.png" alt="Flask" width="150" height="150" loading="lazy"><figcaption>Flask</figcaption></figure>
+    <figure><img src="assets/stamps/pytorch.png" alt="PyTorch" width="150" height="150" loading="lazy"><figcaption>PyTorch</figcaption></figure>
+    <figure><img src="assets/stamps/sklearn.png" alt="scikit-learn" width="150" height="150" loading="lazy"><figcaption>scikit-learn</figcaption></figure>
+    <figure><img src="assets/stamps/numpy.png" alt="NumPy" width="150" height="150" loading="lazy"><figcaption>NumPy</figcaption></figure>
+    <figure><img src="assets/stamps/pandas.png" alt="pandas" width="150" height="150" loading="lazy"><figcaption>pandas</figcaption></figure>
+    <figure><img src="assets/stamps/flutter.png" alt="Flutter" width="150" height="150" loading="lazy"><figcaption>Flutter</figcaption></figure>
+    <figure><img src="assets/stamps/dart.png" alt="Dart" width="150" height="150" loading="lazy"><figcaption>Dart</figcaption></figure>
+  </div>
+
+  <p class="skills__also">
+    Also — finite element methods · Gaussian processes · multi-fidelity fusion ·
+    leakage-aware validation · Git &amp; GitHub · REST API design
+  </p>
+</section>
+
+<!-- ───────────────────────────────────────────── contact -->
+<section class="section section--contact" id="contact">
+  <header class="section__head">
+    <span class="section__kanji">連絡</span>
+    <h2>Get in touch</h2>
+  </header>
+
+  <p class="contact__lede">
+    Open to internships and junior roles in web development and applied ML.
+    The fastest way to reach me is email.
+  </p>
+
+  <div class="contact__links">
+    <a class="btn btn--primary" href="mailto:hmk94302@gmail.com">hmk94302@gmail.com</a>
+    <a class="btn" href="https://www.linkedin.com/in/hari-govind-436230294/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/Harigovind777" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p>Built by hand — no framework, no build step. <span class="foot__kanji">骨</span></p>
+  <p class="foot__sub">The shape in the hero is a gyroid, computed live in your browser. It's the scaffold geometry from my thesis.</p>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>
