@@ -298,25 +298,59 @@ img{ max-width:100%; display:block }
 }
 .chip--lock{ background:rgba(246,241,232,.07); color:var(--muted); border-color:var(--rule) }
 
-/* ───────────────────────────────────────────────────── stamps */
-.stamps{
-  display:grid; gap:clamp(.8rem,2.5vw,1.5rem);
-  grid-template-columns:repeat(auto-fit,minmax(96px,1fr));
+/* ────────────────────────────────────────────── constellation */
+.constel__hint{
+  font-size:.92rem; color:var(--muted); margin-bottom:1.1rem; min-height:2.9em;
+  max-width:62ch;
 }
-.stamps figure{ margin:0; text-align:center }
-.stamps img{
-  width:100%; max-width:118px; margin:0 auto;
-  filter:drop-shadow(0 4px 14px rgba(196,46,38,.28));
-  transition:transform .3s var(--ease), filter .3s;
+.constel__hint b{ color:var(--paper) }
+.constel__hint i{ color:var(--amber); font-style:normal }
+
+/* the graph needs room to stay legible; on a phone it pans rather than shrinks
+   into unreadable 5px labels */
+.constel{ overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0 -.4rem }
+.constel__svg{ display:block; width:100%; min-width:660px; height:auto }
+
+.edge{
+  fill:none; stroke:var(--paper); stroke-opacity:.14; stroke-width:1.1;
+  transition:stroke .25s var(--ease), stroke-opacity .25s var(--ease), stroke-width .25s;
 }
-.stamps figure:hover img{
-  transform:rotate(-7deg) scale(1.09);
-  filter:drop-shadow(0 8px 22px rgba(196,46,38,.55));
+.node{ cursor:pointer; transition:opacity .25s var(--ease) }
+.node .mark{ transition:filter .25s var(--ease), transform .25s var(--ease) }
+.node--project .mark{ fill:var(--amber) }
+.node--skill .mark{ fill:var(--vermil); stroke:var(--paper); stroke-opacity:.5; stroke-width:1.2 }
+.node .label{
+  font-family:var(--mono); font-size:13px; fill:var(--muted);
+  pointer-events:none; transition:fill .25s var(--ease);
 }
-.stamps figcaption{
-  font-family:var(--mono); font-size:.68rem; color:var(--muted);
-  margin-top:.5rem; letter-spacing:.03em;
+.node--project .label{
+  font-family:var(--display); font-size:14.5px; font-weight:600; fill:var(--paper);
 }
+.node:focus{ outline:none }
+.node:focus-visible .mark{ filter:url(#cglow) }
+.node:focus-visible .label{ fill:var(--amber) }
+
+.constel__svg.is-focus .node{ opacity:.16 }
+.constel__svg.is-focus .node.is-lit{ opacity:1 }
+.constel__svg.is-focus .edge{ stroke-opacity:.04 }
+.constel__svg.is-focus .edge.is-lit{
+  stroke:#98eaee; stroke-opacity:.95; stroke-width:1.9;
+}
+.node.is-lit .mark{ filter:url(#cglow) }
+.node.is-lit .label{ fill:var(--paper) }
+
+.constel__fallback{ margin-top:1.4rem; border-top:1px solid var(--rule); padding-top:1rem }
+.constel__fallback summary{
+  font-family:var(--mono); font-size:.78rem; color:var(--muted); cursor:pointer;
+}
+.constel__fallback summary:hover{ color:var(--paper) }
+.constel__fallback ul{
+  list-style:none; padding:0; margin:1rem 0 0;
+  display:grid; gap:.55rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+.constel__fallback li{ font-size:.86rem; color:var(--muted) }
+.constel__fallback li b{ color:var(--paper) }
+
 .skills__also{
   margin-top:2.4rem; color:var(--muted); font-size:.88rem;
   border-top:1px solid var(--rule); padding-top:1.2rem;
